@@ -16,7 +16,6 @@ thinkphp本身并没有提供相应的单元测试支持，所以本库的目的
 在Appcation下创建一个新的文件夹test，并新建一个测试类，命名为IndexTest.php。
 其代码为：
 <pre><code>
-<?php
 class IndexTest extends PHPUnit_Framework_TestCase{
     //构造函数
     function __construct(){
@@ -39,10 +38,8 @@ class IndexTest extends PHPUnit_Framework_TestCase{
 
 }
 </code></pre>
-
 Index控制器为：
 <pre><code>
-<?php
 namespace Home\Controller;
 use Think\Controller;
 class IndexController extends Controller {
