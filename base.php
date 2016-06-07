@@ -48,6 +48,10 @@ spl_autoload_register('my_autoload');
  */
 
 function my_autoload($class) {
+	if($class=='Think\Controller'){
+		include  dirname(__FILE__).'/replace/Controller.class.php';
+		return;
+	}
 	
 	if (false !== strpos($class, '\\')) {
 

@@ -2,7 +2,7 @@
 ## 一、概述：
 thinkphp本身并没有提供相应的单元测试支持，所以本库的目的是将thinkphp中的一些功能集合起来打包成一个库，
 使大家可以通过只需导入本库，便可对thinkphp进行单元测试，从而保证软件的质量。
-特点是：易用，方便，非入侵式
+特点是：易用，方便，非入侵式(部分方法除外)
 支持版本：ThinkPHP3.2.3
 
 ## 二、使用步骤
@@ -50,5 +50,16 @@ class IndexController extends Controller {
 </code></pre>
 然后运行phpunit进行单元测试：
 phpunit E:\\www\\novel\\Application\\test\\IndexTest.php
+
+## 四、使用注意
+由于thinkphp代码中，ajaxReturn是使用exit进行处理的，所以导致了使用ajaxReturn的时候，会造成无法进行单元测试。
+所以本库对ajaxReturn进行了一些修改，在使用的时候，需要加上return。
+比如：
+$this->ajaxReturn('abc');
+现在需写为：
+$this->ajaxReturn('abc');
+return;
+
+整个库中，目前只有该方法是入侵式的。
 
 
