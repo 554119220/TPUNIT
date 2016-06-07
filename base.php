@@ -1,5 +1,6 @@
 <?php
 error_reporting(0);
+include_once dirname(__FILE__).'/replace/AjaxReturnEvent.php';
 include TP_BASEPATH.'ThinkPHP/Common/functions.php';
 
 

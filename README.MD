@@ -53,13 +53,13 @@ phpunit E:\\www\\novel\\Application\\test\\IndexTest.php
 
 ## 四、使用注意
 由于thinkphp代码中，ajaxReturn是使用exit进行处理的，所以导致了使用ajaxReturn的时候，会造成无法进行单元测试。
-所以本库对ajaxReturn进行了一些修改，在使用的时候，需要加上return。
+所以本库对ajaxReturn进行了一些修改。在使用断言的时候，需要通过事件来相应
 比如：
-$this->ajaxReturn('abc');
-现在需写为：
-$this->ajaxReturn('abc');
-return;
-
-整个库中，目前只有该方法是入侵式的。
+try{
+	//这里写上动作，该动作里面会调用ajaxReturn方法
+}catch(AjaxReturnEvent $event){
+	//这里写上断言，结果为：$event->getMessage()
+	//比如：$this->assertEquals('123',$event->getMessage(),'test');
+}
 
 

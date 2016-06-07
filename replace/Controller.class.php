@@ -209,30 +209,29 @@ abstract class Controller {
      */
 
     protected function ajaxReturn($data,$type='',$json_option=0) {
-    	
+    	include_once dirname(__FILE__).'/AjaxReturnEvent.php';
         if(empty($type)) $type  =   C('DEFAULT_AJAX_RETURN');
         switch (strtoupper($type)){
             case 'JSON' :
                 // 返回JSON数据格式到客户端 包含状态信息
                 header('Content-Type:application/json; charset=utf-8');
-                echo json_encode($data,$json_option);
+				throw new \AjaxReturnEvent(json_encode($data,$json_option));
 				return;
             case 'XML'  :
                 // 返回xml格式数据
                 header('Content-Type:text/xml; charset=utf-8');
-                echo xml_encode($data);
+				throw new \AjaxReturnEvent(xml_encode($data));
 				return;
             case 'JSONP':
                 // 返回JSON数据格式到客户端 包含状态信息
                 header('Content-Type:application/json; charset=utf-8');
                 $handler  =   isset($_GET[C('VAR_JSONP_HANDLER')]) ? $_GET[C('VAR_JSONP_HANDLER')] : C('DEFAULT_JSONP_HANDLER');
-                echo $handler.'('.json_encode($data,$json_option).');'; 
+				throw new \AjaxReturnEvent($handler.'('.json_encode($data,$json_option).');');
 				return; 
             case 'EVAL' :
                 // 返回可执行的js脚本
                 header('Content-Type:text/html; charset=utf-8');
-                echo $data;
-				
+				throw new \AjaxReturnEvent($data);
 				return;    
             default     :
                 // 用于扩展其他返回格式数据
