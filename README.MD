@@ -3,13 +3,15 @@
 thinkphp本身并没有提供相应的单元测试支持，所以本库的目的是将thinkphp中的一些功能集合起来打包成一个库，
 使大家可以通过只需导入本库，便可对thinkphp进行单元测试，从而保证软件的质量。
 特点是：易用，方便，非入侵式(部分方法除外)
-支持版本：ThinkPHP3.2.3
+支持版本：ThinkPHP3.2.3、5.x
+当前TPUNIT版本：0.1
 
 ## 二、使用步骤
-1. 定义TP_BASEPATH常量
-2. 导入base.php库
-3. 导入欲测试的文件
-4. 使用phpunit运行单元测试
+1. 定义TPUNIT_VERSION常量：5.x或者是3.2.3。
+2. 定义TP_BASEPATH常量
+3. 导入base.php库
+4. 导入欲测试的文件
+5. 使用phpunit运行单元测试
 
 ## 三、详细使用步骤
 
@@ -19,6 +21,8 @@ thinkphp本身并没有提供相应的单元测试支持，所以本库的目的
 class IndexTest extends PHPUnit_Framework_TestCase{
     //构造函数
     function __construct(){
+    	//定义TP的版本
+    	define('TPUNIT_VERSION','3.2.3');
         //定义目录路径，最好为绝对路径
     	define('TP_BASEPATH', 'E:/www/novel/');
 		//导入base库
