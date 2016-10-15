@@ -77,6 +77,8 @@ try{
 </code></pre>
 
 ## 五、对TP5.0进行测试
+>注意：官方已经提供TP5.X的单元测试扩展，本库不再针对TP 5.X进行更新，如需了解TP 5.X如何下进行单元测试请看相关的以下手册：
+ http://www.kancloud.cn/code7/tpunit
 
 测试方式同上述一致，不过在需要额外定义常量TPUNIT_VERSION，该常量表明TP的版本而不是TPUNIT的版本。
 
